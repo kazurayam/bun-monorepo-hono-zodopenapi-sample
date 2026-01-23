@@ -1,28 +1,87 @@
-# Lorem ipsum
+- Table of contents
+{:toc}
+
+# package.jsonファイルのmainフィールドの値が原因でTS2307 "Cannot find module" エラーが発生した件
+
+## 環境
+
+- OS: macOS Sequoia 15.7.2
+
+- TypeScriptランタイム: bun 1.3.6
+
+## 背景
+
+わたしは \[bun\](<https://bun.com/>) でTypeScriptプロジェクトを開発する技法を学びたかった。そのためにQiita記事 \[Hono + Zod-OpenAPIで快適に開発する, @mtfuji\_ksk\](<https://qiita.com/mtfuji_ksk/items/5da28a1f4fabfa994246>) のサンプルコードを写経した。この記事は複数のフロントエンドとしてのパッケージとバックエンドとしてのパッケージからなるプロジェクトを提示している。この記事はHonoとZod-OpenAPIを使うTypeScriptコードをどう書くべきかを解説している。ところがパッケージたちをどうやって組み立てるかについては述べていない。わたしは一つのGitレポジトリの中に複数のパッケージを格納する構成、すなわちモノレポにすることにした。bunの \[Workspaces\](<https://bun.com/docs/pm/workspaces>) を適用することにした。
+
+## 詳しい説明
+
+### プロジェクトを作る
+
+適当なディレクトリを作成してそこにcdする。
+
+    $ mkdir hono-zod-openapi-bun
+    $ cd hono-zod-openapi-bun
+    $ ROOT=$(pwd)
+
+このディレクトリの中にプロジェクトを作成する。このディレクトリのパスを以下で `$ROOT` という記号で表すことにする。
+
+### bun init する
+
+bunのinitコマンドを使ってプロジェクトを初期化した。
+
+    $ cd $ROOT
+    $ bun init -y
+
+`packages/backend` ディレクトリと `packages/shared` ディレクトリを作った。
+
+    $ mkdir packages
+    $ mkdir packages/backend
+    $ mkdir pacages/shared
+
+こんなツリーができた。
+
+    $ tree -L 2 .
+    .
+    ├── bun.lock
+    ├── CLAUDE.md
+    ├── index.ts
+    ├── node_modules
+    │   ├── @types
+    │   ├── bun-types
+    │   ├── typescript
+    │   └── undici-types
+    ├── package.json
+    ├── packages
+    │   ├── backend
+    │   └── shared
+    ├── README.md
+    └── tsconfig.json
+
+## Lorem ipsum
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-## Ut enim ad minim veriam
+### Ut enim ad minim veriam
 
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-### Duis aute irure dolor
+#### Duis aute irure dolor
 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
-#### Excepteur sint occaecat cupidatat
+##### Excepteur sint occaecat cupidatat
 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-# Quo usque tandem abutere
+## Quo usque tandem abutere
 
 Quo usque tandem abutere, Catilina, patientia nostra?
 
-# Header with (& - \_ : ; ) non Latin Characters
+## Header with (& - \_ : ; ) non Latin Characters
 
 Quam diu etiam furor iste tuus nos eludet?
 
-# Source code inclusion example
+## Source code inclusion example
 
     #!/bin/bash
 
@@ -119,7 +178,7 @@ Quam diu etiam furor iste tuus nos eludet?
       processFile $fname
     done
 
-# Diagram example
+## Diagram example
 
 Generated using [PlantUML](https://plantuml.com/ja/)
 
@@ -127,7 +186,7 @@ Generated using [PlantUML](https://plantuml.com/ja/)
 <img src="https://kazurayam.github.io/adoc2md/diagrams/out/sequence/sequence.png" alt="sequence" />
 </figure>
 
-# 宮沢賢治の詩その1
+## 宮沢賢治の詩その1
 
 心象スケッチ　春と修羅
 
@@ -151,7 +210,7 @@ Generated using [PlantUML](https://plantuml.com/ja/)
     かげとひかりのひとくさりづつ
     そのとほりの心象スケッチです
 
-# 宮沢賢治の詩その2
+## 宮沢賢治の詩その2
 
     雨ニモマケズ
     風ニモマケズ
@@ -192,7 +251,7 @@ Generated using [PlantUML](https://plantuml.com/ja/)
     南無浄行菩薩
     南無安立行菩薩
 
-# Dolorem ipsum
+## Dolorem ipsum
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed tempus urna et pharetra pharetra massa. Praesent tristique magna sit amet purus. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. In cursus turpis massa tincidunt dui ut. Massa tincidunt nunc pulvinar sapien et ligula ullamcorper. Facilisis mauris sit amet massa vitae tortor condimentum. Sapien faucibus et molestie ac feugiat sed lectus vestibulum. Eu turpis egestas pretium aenean pharetra magna ac placerat. Nulla aliquet porttitor lacus luctus accumsan tortor posuere. Sit amet purus gravida quis blandit turpis cursus. Suspendisse sed nisi lacus sed. Laoreet non curabitur gravida arcu ac. Dolor sit amet consectetur adipiscing elit pellentesque. Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat.
 

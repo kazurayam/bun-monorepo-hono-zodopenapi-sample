@@ -1,3 +1,71 @@
+= package.jsonファイルのmainフィールドの値が原因でTS2307 "Cannot find module" エラーが発生した件
+
+== 環境
+
+- OS: macOS Sequoia 15.7.2
+- TypeScriptランタイム: bun 1.3.6
+
+== 背景
+
+わたしは [bun](https://bun.com/) でTypeScriptプロジェクトを開発する技法を学びたかった。そのためにQiita記事 [Hono + Zod-OpenAPIで快適に開発する, @mtfuji_ksk](https://qiita.com/mtfuji_ksk/items/5da28a1f4fabfa994246) のサンプルコードを写経した。この記事は複数のフロントエンドとしてのパッケージとバックエンドとしてのパッケージからなるプロジェクトを提示している。この記事はHonoとZod-OpenAPIを使うTypeScriptコードをどう書くべきかを解説している。ところがパッケージたちをどうやって組み立てるかについては述べていない。わたしは一つのGitレポジトリの中に複数のパッケージを格納する構成、すなわちモノレポにすることにした。bunの [Workspaces](https://bun.com/docs/pm/workspaces) を適用することにした。
+
+
+== 詳しい説明
+
+=== プロジェクトを作る
+
+適当なディレクトリを作成してそこにcdする。
+
+[source,shell]
+----
+$ mkdir hono-zod-openapi-bun
+$ cd hono-zod-openapi-bun
+$ ROOT=$(pwd)
+----
+
+このディレクトリの中にプロジェクトを作成する。このディレクトリのパスを以下で `$ROOT` という記号で表すことにする。
+
+=== bun init する
+
+bunのinitコマンドを使ってプロジェクトを初期化した。
+
+[source,shell]
+----
+$ cd $ROOT
+$ bun init -y
+----
+
+`packages/backend` ディレクトリと `packages/shared` ディレクトリを作った。
+[source,shell]
+----
+$ mkdir packages
+$ mkdir packages/backend
+$ mkdir pacages/shared
+----
+
+こんなツリーができた。
+
+[source,shell]
+----
+$ tree -L 2 .
+.
+├── bun.lock
+├── CLAUDE.md
+├── index.ts
+├── node_modules
+│   ├── @types
+│   ├── bun-types
+│   ├── typescript
+│   └── undici-types
+├── package.json
+├── packages
+│   ├── backend
+│   └── shared
+├── README.md
+└── tsconfig.json
+----
+
+
 == Lorem ipsum
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
