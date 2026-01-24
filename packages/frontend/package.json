@@ -1,6 +1,6 @@
 {
   "name": "@kazurayam/ts2307error-in-monorepo-frontend",
-  "main": "index.ts",
+  "module": "index.ts",
   "type": "module",
   "private": true,
   "devDependencies": {

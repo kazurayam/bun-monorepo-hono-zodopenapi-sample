@@ -1,6 +1,6 @@
 {
   "name": "ts2307error-in-monorepo",
-  "main": "index.ts",
+  "module": "index.ts",
   "type": "module",
   "private": true,
 

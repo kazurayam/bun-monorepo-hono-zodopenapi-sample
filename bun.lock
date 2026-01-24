@@ -11,8 +11,41 @@
         "typescript": "^5",
       },
     },
+    "packages/backend": {
+      "name": "@kazurayam/ts2307error-in-monorepo-backend",
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/frontend": {
+      "name": "@kazurayam/ts2307error-in-monorepo-frontend",
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/shared": {
+      "name": "@kazurayam/ts2307error-in-monorepo-shared",
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
   },
   "packages": {
+    "@kazurayam/ts2307error-in-monorepo-backend": ["@kazurayam/ts2307error-in-monorepo-backend@workspace:packages/backend"],
+
+    "@kazurayam/ts2307error-in-monorepo-frontend": ["@kazurayam/ts2307error-in-monorepo-frontend@workspace:packages/frontend"],
+
+    "@kazurayam/ts2307error-in-monorepo-shared": ["@kazurayam/ts2307error-in-monorepo-shared@workspace:packages/shared"],
+
     "@types/bun": ["@types/bun@1.3.6", "", { "dependencies": { "bun-types": "1.3.6" } }, "sha512-uWCv6FO/8LcpREhenN1d1b6fcspAB+cefwD7uti8C8VffIv0Um08TKMn98FynpTiU38+y2dUO55T11NgDt8VAA=="],
 
     "@types/node": ["@types/node@25.0.10", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-zWW5KPngR/yvakJgGOmZ5vTBemDoSqF3AcV/LrO5u5wTWyEAVVh+IT39G4gtyAkh3CtTZs8aX/yRM82OfzHJRg=="],

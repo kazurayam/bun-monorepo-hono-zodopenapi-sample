@@ -7,47 +7,56 @@
 
 - OS: macOS Sequoia 15.7.2
 
-- TypeScriptランタイム: bun 1.3.6
+- ランタイム: bun 1.3.6
 
 ## 背景
 
-わたしは [bun](https://bun.com/) でTypeScriptプロジェクトを開発する技法を学びたかった。そのためにQiita記事 [Hono + Zod-OpenAPIで快適に開発する, @mtfuji\_ksk](https://qiita.com/mtfuji_ksk/items/5da28a1f4fabfa994246) のサンプルコードを写経しようと決めた。
+わたしは [bun](https://bun.com/) でTypeScriptでHonoを使ったプロジェクトを開発する技法を学習しているところだ。その一貫でQiita記事 [「Hono + Zod-OpenAPIで快適に開発する」 @mtfuji\_ksk](https://qiita.com/mtfuji_ksk/items/5da28a1f4fabfa994246) のサンプルコードを写経しようと決めた。
 
-この記事は複数のフロントエンドとしてのパッケージとバックエンドとしてのパッケージからなるプロジェクトを想定すると述べている。そしてHonoとZod-OpenAPIを使うTypeScriptコードをどう書くべきかを解説している。ところがパッケージたちをどうやって構築するかについて具体的なことを述べていない。技術的に別の話題だから、記述する話題を絞ったのだろう。もっともなことと思う。ところがわたしがいざサンプルコードを写経しようとすると、パッケージの組み立て方を具体的に選んでプロジェクトを構成しなければならない。さもないとTypeScriptのコードを書く作業を始めることができない。どうしようか？
+この記事は複数のフロントエンドとしてのパッケージとバックエンドとしてのパッケージからなるプロジェクトを想定すると述べている。そしてHonoとZod-OpenAPIを使うTypeScriptコードをどう書くべきかを解説している。ところが複数パッケージをどうやって構築するかについて具体的な方法を述べていない。技術的に別の話題だから著者は一つの話題に絞って記述したのだろう。もっともなことと思う。ところがわたしがいざサンプルコードを写経しようとしたら、パッケージの構築法を具体的に選んでプロジェクトを構成しなければならない。さもないとTypeScriptのコードを書く作業を始められなかった。どうしようか？
 
-わたしはこのプロジェクトを一つのGitレポジトリの中に複数のパッケージを格納する構成すなわちモノレポにすることにした。そのためにbunの [Workspaces](https://bun.com/docs/pm/workspaces) を適用することにした。
+わたしはこのプロジェクトを一つのGitレポジトリの中に複数のパッケージを格納する構成すなわち「モノレポ」にすることにした。そのためにbunの [Workspaces](https://bun.com/docs/pm/workspaces) を適用することにした。
 
-## 解決すべき問題
+## 問題発生
+
+TODO
+
+## 解決方法
+
+TODO
 
 ## 詳しい説明
 
-### プロジェクトのROOTディレクトリを作る
+### モノレポの構成を作る
 
-適当なディレクトリを作成してそこにcdする。
+#### ROOTディレクトリを作る
+
+適当なディレクトリを作成してそこにcdする。例えば `ts2307error-in-monorepo` という名前のディレクトリを作成したとしよう。
 
     $ mkdir ts2307error-in-monorepo
     $ cd ts2307error-in-monorepo
     $ ROOT=$(pwd)
 
-このディレクトリの中にプロジェクトを作成する。このディレクトリのパスを以下で `$ROOT` という記号で表すことにする。
+このディレクトリの中にプロジェクトを作成する。この後の文の中でこのディレクトリのパスを `$ROOT` という記号で表すことにする。
 
-### bun init する
+#### bun init する
 
 bunのinitコマンドを使ってプロジェクトを初期化した。
 
     $ cd $ROOT
     $ bun init -y
 
-### サブパッケージのディレクトリを作る
+#### パッケージのディレクトリを作る
 
 `packages/backend` ディレクトリと `packages/shared` ディレクトリを作った。
 
+    $ cd $ROOT
     $ mkdir packages
     $ mkdir packages/backend
     $ mkdir packages/frontend
     $ mkdir pacages/shared
 
-`packages/backed` ディレクトリの中で bun init コマンドを実行してサブパッケージを初期化した。`frontend` と `shared` も同様にした。
+`packages/backed` ディレクトリの中で bun init コマンドを実行してパッケージを初期化した。`frontend` と `shared` も同様にした。
 
     $ cd $ROOT/package/backend
     $ bun init -y
@@ -96,7 +105,7 @@ bunのinitコマンドを使ってプロジェクトを初期化した。
     ├── README.md
     └── tsconfig.json
 
-### $ROOT/package.json を編集してworkspacesを宣言する
+#### $ROOT/package.json を編集してworkspacesを宣言した
 
 `$ROOT/package.json` ファイルを編集して `workspaces` フィールドを指定して、`packages` フォルダの下にあるすべてのディレクトリをパッケージとすることを宣言した。
 
@@ -118,7 +127,7 @@ bunのinitコマンドを使ってプロジェクトを初期化した。
       }
     }
 
-### サブパッケージの `package.json` を修正した。
+#### 各パッケージの `package.json` を修正した。
 
 `packages/shared/package.json` ファイルを編集した。bun init コマンドで自動生成されたコードはこうだった。
 
@@ -128,18 +137,25 @@ bunのinitコマンドを使ってプロジェクトを初期化した。
       "type": "module",
       ...
 
-これをこう書き換えた。
+これをわたしは書き換えた。こんなふうに。
 
     {
       "name": "@kazurayam/ts2307error-in-monorepo-shared",
-      "main": "index.ts",
+      "main": "./index.ts",
       "type": "module",
       ...
 
-1.  `name` フィールドの値を `shared` から `@kazurayam/ts2307error-in-monorepo-shared` に書き換えた。これがパッケージの名前となる。`"names": "shared"` とするとディレクトリ名とパッケージ名が同じになってしま。紛らわしい。少し冗長で説明的なパッケージ名にした方がいいと考えた。
-    \[\] `module` フィールドを削除し、代わりに `main` フィールドを追加して `index.ts` を値として指定した。bun initコマンドが\`package.json\` の中に `module` フィールドを生成したのだが、これってbunのバグなのではないか？ Nodeの [公式ドキュメント Node.js package.json field definitions](https://nodejs.org/api/packages.html#nodejs-packagejson-field-definitions) には `module` フィールドが無い。その代わり `"main"` フィールドは定義されている。だから取り替えよう。
+1.  `name` フィールドの値を `shared` から `@kazurayam/ts2307error-in-monorepo-shared` に書き換えた。これがパッケージの名前となる。`"names": "shared"` とするとディレクトリ名とパッケージ名が同じになってしまって、紛らわしい。少し冗長で説明的なパッケージ名の方がいいと考えた。
+
+2.  `module` フィールドを削除し、代わりに `main` フィールドを追加した。bun initコマンドが\`package.json\` の中に `module` フィールドを生成したのだが、これって **bunのバグ** なのではないか？ Nodeの [公式ドキュメント Node.js package.json field definitions](https://nodejs.org/api/packages.html#nodejs-packagejson-field-definitions) には `module` フィールドが無い。だから `"main"` フィールドに取り替えた。
 
 同じ考えを `$ROOT/packages/backend/packages.json` と `$ROOT/packages/frontend/packages.json` に適用し、修正した。
+
+### TypeScriptコードを写経した
+
+
+
+
 
 ## Lorem ipsum
 

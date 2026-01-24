@@ -1,6 +1,6 @@
 {
   "name": "@kazurayam/ts2307error-in-monorepo-shared",
-  "main": "index.ts",
+  "module": "./src/schema.ts",
   "type": "module",
   "private": true,
   "devDependencies": {
