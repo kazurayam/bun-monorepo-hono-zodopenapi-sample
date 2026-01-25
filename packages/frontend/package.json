@@ -7,9 +7,12 @@
     "./api/client": "./src/api/client.ts",
     "./components/UserList": "./src/components/UserList.tsx"
   },
-  "depencdencies": {
+  "dependencies": {
+    "hono": "^latest",
     "react": "latest",
     "@types/react": "latest",
+    "react-dom": "latest",
+    "@types/react-dom": "latest",
     "@kazurayam/bun-monorepo-hono-zodopenapi-sample-backend": "workspace:^",
     "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared": "workspace:^"
   },
