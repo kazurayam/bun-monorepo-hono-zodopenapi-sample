@@ -1,3 +1,5 @@
+// backend/src/server.test.ts
+
 import { describe, expect, test } from 'bun:test';
 import app from './server';
 
@@ -28,3 +30,23 @@ describe('ユーザ一に関するテスト', () => {
         expect(body.data.email).toEqual('kazurayam@example.com');
     });
 });
+
+describe('OpenAPI仕様書を取得するテスト', () => {
+    test('', async () => {
+        const res = await app.request(
+            new Request('http://localhost/doc', {
+                method: 'GET',
+            })
+        );
+        expect(res.status).toBe(200);
+        const text: string = await res.text();
+        console.log(text);
+        const body = JSON.parse(text);
+        expect(body).toHaveProperty('openapi');
+        expect(body.openapi).toBe('3.0.0');
+        expect(body).toHaveProperty('info');
+        expect(body.info).toHaveProperty('title');
+        expect(body.info.title).toBe('API Documentation');
+    });
+});
+

@@ -1,4 +1,4 @@
-# package.jsonファイルのmainフィールドの値が原因でTS2307 "Cannot find module" エラーが発生した件
+# bun+モノレポ+Hono+Zod OpenAPIでTypeScripプロジェクトを開発する件
 
 ## 短い説明
 
