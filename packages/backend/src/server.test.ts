@@ -17,7 +17,7 @@ describe('ユーザ一に関するテスト', () => {
         );
         expect(res.status).toBe(200);
         const text: string = await res.text();
-        //console.log(text);
+        // console.log(text);
         // -> {"success":true,"data":{"id":"user_1769259070497","name":"kazurayam","email":"kazurayam@example.com","createdAt":"2026-01-24T12:51:10.497Z"}}
         const body = JSON.parse(text);
         expect(body).toHaveProperty('success');
@@ -31,7 +31,7 @@ describe('ユーザ一に関するテスト', () => {
     });
 });
 
-describe('OpenAPI仕様書を取得するテスト', () => {
+describe('JSON形式のOpenAPIドキュメントを取得するテスト', () => {
     test('', async () => {
         const res = await app.request(
             new Request('http://localhost/doc', {
@@ -40,13 +40,27 @@ describe('OpenAPI仕様書を取得するテスト', () => {
         );
         expect(res.status).toBe(200);
         const text: string = await res.text();
-        console.log(text);
+        //console.log(text);
         const body = JSON.parse(text);
         expect(body).toHaveProperty('openapi');
         expect(body.openapi).toBe('3.0.0');
         expect(body).toHaveProperty('info');
         expect(body.info).toHaveProperty('title');
         expect(body.info.title).toBe('API Documentation');
+    });
+});
+
+describe('Swagger UIを取得するテスト', () => {
+    test('', async () => {
+        const res = await app.request(
+            new Request('http://localhost/doc/ui', {
+                method: 'GET',
+            })
+        );
+        expect(res.status).toBe(200);
+        const text: string = await res.text();
+        // console.log(text);
+        expect(text).toContain('<title>SwaggerUI</title>');
     });
 });
 
