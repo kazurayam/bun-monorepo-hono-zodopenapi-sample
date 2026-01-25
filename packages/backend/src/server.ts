@@ -4,6 +4,7 @@ import { OpenAPIHono } from '@hono/zod-openapi';
 import { swaggerUI } from '@hono/swagger-ui';
 import { usersApp } from './route/user';
 
+// Honoアプリケーションを作成する
 export const app = new OpenAPIHono()
     // ユーザー関連のルートを登録
     .route('/api', usersApp);
