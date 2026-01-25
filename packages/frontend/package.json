@@ -8,15 +8,20 @@
     "./components/UserList": "./src/components/UserList.tsx"
   },
   "dependencies": {
-    "hono": "^latest",
-    "react": "latest",
-    "@types/react": "latest",
-    "react-dom": "latest",
-    "@types/react-dom": "latest",
     "@kazurayam/bun-monorepo-hono-zodopenapi-sample-backend": "workspace:^",
-    "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared": "workspace:^"
+    "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared": "workspace:^",
+    "@types/react": "^latest",
+    "@types/react-dom": "^latest",
+    "hono": "^latest",
+    "react": "^latest",
+    "react-dom": "^latest"
   },
   "devDependencies": {
+    "happy-dom": "^latest",
+    "@happy-dom/global-registrator": "^latest",
+    "@testing-library/dom": "^latest",
+    "@testing-library/jest-dom": "^latest",
+    "@testing-library/react": "^latest",
     "@types/bun": "latest"
   },
   "peerDependencies": {

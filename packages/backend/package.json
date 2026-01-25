@@ -12,7 +12,7 @@
     "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared": "workspace:^"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "^latest"
   },
   "peerDependencies": {
     "typescript": "^5"

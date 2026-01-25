@@ -6,6 +6,9 @@
   "workspaces":[
     "packages/*"
   ],
+  "scripts": {
+    "test": "bun test --preload ./packages/frontend/happydom.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
