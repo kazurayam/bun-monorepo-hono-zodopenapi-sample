@@ -34,4 +34,7 @@ app.get('/', (c) => {
     return c.html(<Top messages={messages} />);
 });
 
-export default app;
+export default {
+    port: 3001,
+    fetch: app.fetch
+};
