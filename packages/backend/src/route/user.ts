@@ -8,7 +8,7 @@ import {
     ErrorResponseSchema,
     GetUsersQuerySchema,
     GetUsersResponseSchema
-} from "@kazurayam/ts2307error-in-monorepo-shared";
+} from "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared";
 
 const app = new OpenAPIHono();
 

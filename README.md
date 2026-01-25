@@ -11,3 +11,6 @@ Qiita記事 [Hono + Zod-OpenAPIで快適に開発する, @mtfuji_ksk](https://qi
 - https://kazurayam.github.io/TS2307error-caused-by-the-main-field-in-package.config-in-monorepo/
 
 を参照願います。
+
+### "bun init" が生成した `index.ts` を削除した
+

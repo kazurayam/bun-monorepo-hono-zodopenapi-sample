@@ -1,8 +1,11 @@
 {
-  "name": "@kazurayam/ts2307error-in-monorepo-shared",
-  "module": "./src/schema.ts",
+  "name": "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared",
   "type": "module",
   "private": true,
+  "exports": {
+    ".": "./src/schema.ts",
+    "./schema": "./src/schema.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -10,3 +13,4 @@
     "typescript": "^5"
   }
 }
+

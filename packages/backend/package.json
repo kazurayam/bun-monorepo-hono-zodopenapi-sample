@@ -1,8 +1,16 @@
 {
-  "name": "@kazurayam/ts2307error-in-monorepo-backend",
-  "module": "index.ts",
+  "name": "@kazurayam/bun-monorepo-hono-zodopenapi-sample-backend",
+  "module": "index",
   "type": "module",
   "private": true,
+  "exports": {
+    ".": "./src/server.ts",
+    "./server": "./src/server.ts"
+},
+  "dependencies": {
+    "hono": "latest",
+    "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared": "workspace:^"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },

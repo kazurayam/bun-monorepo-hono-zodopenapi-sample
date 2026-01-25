@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getUsers, createUser } from "../api/client";
-import type { GetUsersResponse } from "@kazurayam/hono-zodopenapi-sample-shared";
+import type { GetUsersResponse } from "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared/schema";
 
 export const UserList = () => {
     const [users, setUsers] = useState<GetUsersResponse | null>(null);

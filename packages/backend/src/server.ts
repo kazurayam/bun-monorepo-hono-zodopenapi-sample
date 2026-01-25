@@ -24,4 +24,4 @@ app.get('/doc/ui', swaggerUI({ url: '/doc' }));
 export default app;
 
 // フロントエンドがHono RPCを使用する際に型情報を利用できるようにする
-export type AppType = typeof usersApp;
+export type AppType = typeof app;

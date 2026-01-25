@@ -1,13 +1,11 @@
 {
-  "name": "ts2307error-in-monorepo",
+  "name": "@kazurayam/bun-monorepo-hono-zodopenapi-sample",
   "module": "index.ts",
   "type": "module",
   "private": true,
-
   "workspaces":[
     "packages/*"
   ],
-
   "devDependencies": {
     "@types/bun": "latest"
   },

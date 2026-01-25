@@ -1,20 +1,23 @@
 // frontend/src/api/client.ts
 
 import { hc } from "hono/client";
-import type { AppType } from "@kazurayam/ts2307error-in-monorepo-backend";
+import type { AppType } from "@kazurayam/bun-monorepo-hono-zodopenapi-sample-backend/server";
 import type {
     CreateUserRequest,
     CreateUserResponse,
     ErrorResponse,
     GetUsersQuery,
     GetUsersResponse
-} from "@kazurayam/TS2307error-in-monorepo-backend";
+} from "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared/schema";
 
 // Hono RPCクライアントを作成
-const client = hc<AppType>("http://localhost:5173/api");
+const client = hc<AppType>("http://localhost/api");
 
 // ユーザー一覧を取得する関数
 export const getUsers = async (query?: GetUsersQuery): Promise<GetUsersResponse> => {
+    if (!client) { throw new Error("Hono client is not initialized"); }
+    if (!client.users) { throw new Error("Hono client.users is not initialized"); }
+    if (!client.users.$get) { throw new Error("Hono client.users.$get is not initialized"); }
     const response = await client.users.$get({
         query: {
             page: query?.page || "1",
@@ -29,6 +32,9 @@ export const getUsers = async (query?: GetUsersQuery): Promise<GetUsersResponse>
 
 // ユーザーを作成する関数
 export const createUser = async (data: CreateUserRequest): Promise<CreateUserResponse> => {
+    if (!client) { throw new Error("Hono client is not initialized"); }
+    if (!client.users) { throw new Error("Hono client.users is not initialized"); }
+    if (!client.users.$post) { throw new Error("Hono client.users.$post is not initialized"); }
     const response = await client.users.$post({
         json: data,
     });
@@ -39,14 +45,3 @@ export const createUser = async (data: CreateUserRequest): Promise<CreateUserRes
     return await response.json();
 };
 
-// 新規にユーザを一つ作成し、そのあとで一覧を取得し、consoleに表示する
-/*
-const res1 = await createUser({
-    name: "kazurayam",
-    email: "kazurayam@example.com"
-})
-console.log(res1)
-
-const res2 = await getUsers()
-console.log(res2)
-*/

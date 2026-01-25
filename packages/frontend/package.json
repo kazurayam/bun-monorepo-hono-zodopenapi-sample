@@ -1,8 +1,18 @@
 {
-  "name": "@kazurayam/ts2307error-in-monorepo-frontend",
-  "module": "index.ts",
+  "name": "@kazurayam/bun-monorepo-hono-zodopenapi-sample-frontend",
+  "module": "index",
   "type": "module",
   "private": true,
+  "exports": {
+    "./api/client": "./src/api/client.ts",
+    "./components/UserList": "./src/components/UserList.tsx"
+  },
+  "depencdencies": {
+    "react": "latest",
+    "@types/react": "latest",
+    "@kazurayam/bun-monorepo-hono-zodopenapi-sample-backend": "workspace:^",
+    "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared": "workspace:^"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
