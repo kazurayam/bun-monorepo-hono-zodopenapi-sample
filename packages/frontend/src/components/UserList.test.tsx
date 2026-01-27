@@ -8,10 +8,9 @@ describe('UserListコンポーネントのテスト', () => {
     test('HTMLが応答されることを確認', async () => {
         await act(async () => {
             render(<UserList />);
-            const element = screen.getByText(/ユーザー一覧/i);
-            expect(element).toBeDefined();
         })
-
+        const element = screen.getByText(/ユーザー一覧/i);
+        expect(element).toBeDefined();
     });
 });
 
