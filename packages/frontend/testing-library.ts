@@ -10,5 +10,5 @@ afterEach(() => {
     cleanup();
 });
 
-console.log("Testing Library setup completed");
+//console.log("Testing Library setup completed");
 

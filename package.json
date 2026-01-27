@@ -3,13 +3,16 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
-  "workspaces":[
+  "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "backend": "bun --watch ./packages/backend/src/server.ts",
     "frontend": "bun --watch ./packages/frontend/src/index.tsx",
-    "test": "bun test --preload ./packages/frontend/happydom.ts"
+    "test:backend": "bun test --cwd ./packages/backend",
+    "test:frontend": "bun test --cwd ./packages/frontend --preload ./happydom.ts --preload ./testing-library.ts",
+    "test:shared": "bun test --cwd ./packages/shared",
+    "test": "bun test --cwd ./packages/backend && bun test --cwd ./packages/frontend --preload ./happydom.ts && bun test --cwd ./packages/shared"
   },
   "devDependencies": {
     "@types/bun": "latest"
