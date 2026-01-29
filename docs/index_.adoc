@@ -248,3 +248,31 @@ $ bun add react
 $ bun add @types/react
 ----
 
+== 動作確認
+
+=== サービスを起動するコマンド
+
+```
+$ cd $ROOT; bun run backend
+```
+
+```
+$ cd $ROOT; bun run frontend
+```
+
+=== テストを実行するコマンド
+
+```
+$ cd $ROOT; bun run test
+```
+
+```
+$ cd $ROOT; bun run e2e
+```
+
+
+=== URLs
+
+- http://localhost:5173/api/users でbackendによるAPIサービスが動作していることを見ることができる。
+- http://localhost:5173/doc/ui でSwagger UIが生成したAPIドキュメントを見ることができる
+- http://localhost:3000/ でfrontendによるwebアプリが動作していることを見ることができる。

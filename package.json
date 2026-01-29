@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "backend": "bun --watch ./packages/backend/src/server.ts",
+    "backend": "bun --watch ./packages/backend/src/index.ts",
     "frontend": "bun --watch ./packages/frontend/src/index.tsx",
     "test:backend": "bun test --cwd ./packages/backend",
     "test:frontend": "bun test --cwd ./packages/frontend --preload ./happydom.ts --preload ./testing-library.ts",

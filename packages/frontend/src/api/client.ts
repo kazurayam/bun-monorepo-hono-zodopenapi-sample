@@ -1,7 +1,7 @@
 // frontend/src/api/client.ts
 
 import { hc } from "hono/client";
-import type { AppType } from "@kazurayam/bun-monorepo-hono-zodopenapi-sample-backend/server";
+import type { AppType } from "@kazurayam/bun-monorepo-hono-zodopenapi-sample-backend";
 import type {
     CreateUserRequest,
     CreateUserResponse,
@@ -11,7 +11,7 @@ import type {
 } from "@kazurayam/bun-monorepo-hono-zodopenapi-sample-shared/schema";
 
 // Hono RPCクライアントを作成
-const client = hc<AppType>("http://localhost/api");
+const client = hc<AppType>("http://localhost:5173/api");
 
 // ユーザー一覧を取得する関数
 export const getUsers = async (query?: GetUsersQuery): Promise<GetUsersResponse> => {

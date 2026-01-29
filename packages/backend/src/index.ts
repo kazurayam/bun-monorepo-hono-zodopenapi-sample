@@ -20,9 +20,13 @@ app.doc('/doc', {
     });
 
 // Swagger UIのエンドポイント
+// http://localhost:5173/doc/ui でアクセス可能
 app.get('/doc/ui', swaggerUI({ url: '/doc' }));
 
-export default app;
+export default {
+    port: 5173,
+    fetch: app.fetch
+};
 
 // フロントエンドがHono RPCを使用する際に型情報を利用できるようにする
-export type AppType = typeof app;
+export type AppType = typeof usersApp;  // typeof app ではない!ことに注意

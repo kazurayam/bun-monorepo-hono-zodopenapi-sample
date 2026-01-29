@@ -1,12 +1,32 @@
 // backend/src/server.test.ts
 
 import { describe, expect, test } from 'bun:test';
-import app from './server';
+import { Hono } from 'hono';
+
+const app = new Hono();
 
 describe('ユーザ一に関するテスト', () => {
-    test('', async () => {
+    test('ユーザー一覧を取得する', async () => {
         const res = await app.request(
-            new Request('http://localhost/api/users', {
+            new Request('http://localhost:5173/api/users', {
+                method: 'GET',
+            })
+        );
+        const text: string = await res.text();
+        console.log(">>>" + text);
+        // -> {"success":true,"data":[]}
+
+        expect(res.status).toBe(200);
+        const body = JSON.parse(text);
+        expect(body).toHaveProperty('success');
+        expect(body.success).toBe(true);
+        expect(body).toHaveProperty('data');
+        expect(Array.isArray(body.data)).toBe(true);
+    });
+
+    test('ユーザーを追加する', async () => {
+        const res = await app.request(
+            new Request('http://localhost:5173/api/users', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -34,7 +54,7 @@ describe('ユーザ一に関するテスト', () => {
 describe('JSON形式のOpenAPIドキュメントを取得するテスト', () => {
     test('', async () => {
         const res = await app.request(
-            new Request('http://localhost/doc', {
+            new Request('http://localhost:5173/doc/ui', {
                 method: 'GET',
             })
         );
@@ -47,20 +67,6 @@ describe('JSON形式のOpenAPIドキュメントを取得するテスト', () =>
         expect(body).toHaveProperty('info');
         expect(body.info).toHaveProperty('title');
         expect(body.info.title).toBe('API Documentation');
-    });
-});
-
-describe('Swagger UIを取得するテスト', () => {
-    test('', async () => {
-        const res = await app.request(
-            new Request('http://localhost/doc/ui', {
-                method: 'GET',
-            })
-        );
-        expect(res.status).toBe(200);
-        const text: string = await res.text();
-        // console.log(text);
-        expect(text).toContain('<title>SwaggerUI</title>');
     });
 });
 

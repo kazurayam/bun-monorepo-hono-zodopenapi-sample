@@ -37,7 +37,7 @@ export const UserList = () => {
             const data = await getUsers({ page: "1", limit: "20" });
             setUsers(data);
         } catch (err) {
-            setError(err instanceof Error? err.message : "エラーが発生しました");
+            setError(err instanceof Error ? err.message : "エラーが発生しました");
         }
     };
 
@@ -61,4 +61,4 @@ export const UserList = () => {
             </p>
         </div>
     );
-}
+};

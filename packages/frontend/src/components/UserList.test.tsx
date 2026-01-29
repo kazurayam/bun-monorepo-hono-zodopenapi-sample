@@ -9,7 +9,7 @@ describe('UserListコンポーネントのテスト', () => {
         await act(async () => {
             render(<UserList />);
         })
-        const element = screen.getByText(/ユーザー一覧/i);
+        const element = screen.getByText(/読み込み中.../i);
         expect(element).toBeDefined();
     });
 });

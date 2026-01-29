@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "exports": {
-    ".": "./src/server.ts",
-    "./server": "./src/server.ts"
+    ".": "./src/index.ts"
+
 },
   "dependencies": {
     "hono": "latest",

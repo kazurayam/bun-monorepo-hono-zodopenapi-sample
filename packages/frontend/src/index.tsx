@@ -20,6 +20,13 @@ const Top: FC<{ messages: string[] }> = (props: {
 }) => {
     return (
         <Layout>
+            <h1>Welcome to Hono with JSX</h1>
+            <h2>Messages</h2>
+            <ul>
+                {props.messages.map((msg, index) => (
+                    <li key={index}>{msg}</li>
+                ))}
+            </ul>
             <UserList />
         </Layout>
     );
@@ -31,6 +38,6 @@ app.get('/', (c) => {
 });
 
 export default {
-    port: 3001,
+    port: 3000,
     fetch: app.fetch
 };
