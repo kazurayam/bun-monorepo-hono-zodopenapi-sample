@@ -1,6 +1,6 @@
 {
-    "name": "@kazurayam/bun-monorepo-hono-zodopenapi-sample-honotesting",
-    "module": "index",
+    "name": "@kazurayam/bun-monorepo-hono-zodopenapi-sample-testinghono",
+    "module": "src/sample",
     "type": "module",
     "private": true,
     "dependencies": {
