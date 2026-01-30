@@ -12,6 +12,7 @@
     "test:backend": "bun test --cwd ./packages/backend",
     "test:frontend": "bun test --cwd ./packages/frontend --preload ./happydom.ts --preload ./testing-library.ts",
     "test:shared": "bun test --cwd ./packages/shared",
+    "test:honotesting": "bun test --cwd ./packages/honotesting",
     "test": "bun test --cwd ./packages/backend && bun test --cwd ./packages/frontend --preload ./happydom.ts && bun test --cwd ./packages/shared"
   },
   "devDependencies": {
